@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      httpclient:
+        max-initial-line-length: 8192
+        default-filters:
+          - name: RequestSize
+            args:
+              maxSize: 10MB
+      discovery:
+        locator:
+          enabled: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods: [ "GET", "POST", "PUT", "DELETE" ]
+            allowedHeaders: ["*"]
+server:
+  port: 8765
